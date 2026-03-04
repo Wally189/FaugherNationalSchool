@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+
+local_backend: true
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+site_url: "https://www.faughernationalschool.ie"
+display_url: "https://www.faughernationalschool.ie"
+
+collections:
+  - name: "news"
+    label: "School News"
+    folder: "src/content/news"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    media_folder: "../../assets/uploads/news"
+    public_folder: "../../assets/uploads/news"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      -
+        label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["School Life", "Gaeilge", "Sports", "Achievements", "Community"]
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Featured Image Alt", name: "featuredImageAlt", widget: "string", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "events"
+    label: "School Events"
+    folder: "src/content/events"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    media_folder: "../../../public/downloads"
+    public_folder: "/downloads"
+    fields:
+      - { label: "Event Title", name: "title", widget: "string" }
+      - { label: "Start Date/Time", name: "start", widget: "datetime" }
+      - { label: "End Date/Time", name: "end", widget: "datetime", required: false }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Attachment (PDF)", name: "attachment", widget: "file", required: false }
+      - { label: "Attachment Label", name: "attachmentLabel", widget: "string", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "Alert Banner"
+        name: "alert"
+        file: "src/content/settings/alert.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Enabled", name: "enabled", widget: "boolean", default: false }
+          - { label: "Message", name: "message", widget: "string", required: false }
+          - { label: "Link", name: "link", widget: "string", required: false }
+          - { label: "Link Label", name: "linkLabel", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }

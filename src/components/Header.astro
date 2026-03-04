@@ -1,0 +1,49 @@
+---
+import { siteConfig } from "../site.config";
+
+const pathname = Astro.url.pathname;
+
+const isActive = (href: string): boolean => {
+  if (href === "/") {
+    return pathname === "/";
+  }
+  return pathname.startsWith(href);
+};
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <span class="brand-name">{siteConfig.shortName}</span>
+      <span class="brand-tagline">{siteConfig.tagline}</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      Menu
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation" data-open="false">
+      <ul>
+        {siteConfig.nav.map((item) => (
+          <li>
+            <a href={item.href} class={isActive(item.href) ? "active" : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  const navButton = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('#primary-nav');
+
+  if (navButton && nav) {
+    navButton.addEventListener('click', () => {
+      const expanded = navButton.getAttribute('aria-expanded') === 'true';
+      navButton.setAttribute('aria-expanded', String(!expanded));
+      nav.setAttribute('data-open', String(!expanded));
+    });
+  }
+</script>

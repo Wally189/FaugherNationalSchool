@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+  <title id="t">Reading placeholder</title>
+  <desc id="d">Illustrated placeholder for school life and reading news</desc>
+  <rect width="1200" height="675" fill="#f3efe2"/>
+  <rect x="190" y="190" width="380" height="280" rx="18" fill="#ca6702" opacity="0.7"/>
+  <rect x="630" y="190" width="380" height="280" rx="18" fill="#005f73" opacity="0.72"/>
+  <rect x="170" y="510" width="860" height="42" rx="9" fill="#1f2b2f" opacity="0.45"/>
+</svg>

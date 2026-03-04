@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  monthDate: Date;
+  events: CollectionEntry<"events">[];
+}
+
+const { monthDate, events } = Astro.props;
+
+const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const year = monthDate.getFullYear();
+const month = monthDate.getMonth();
+const firstDay = new Date(year, month, 1);
+const daysInMonth = new Date(year, month + 1, 0).getDate();
+const weekdayOffset = (firstDay.getDay() + 6) % 7;
+
+const dayCells: Array<number | null> = [];
+for (let i = 0; i < weekdayOffset; i += 1) {
+  dayCells.push(null);
+}
+for (let day = 1; day <= daysInMonth; day += 1) {
+  dayCells.push(day);
+}
+while (dayCells.length % 7 !== 0) {
+  dayCells.push(null);
+}
+
+const eventsByDay = new Map<number, CollectionEntry<"events">[]>();
+for (const event of events) {
+  const day = event.data.start.getDate();
+  const found = eventsByDay.get(day) ?? [];
+  found.push(event);
+  eventsByDay.set(day, found);
+}
+
+const monthLabel = monthDate.toLocaleDateString("en-IE", { month: "long", year: "numeric" });
+---
+<section class="calendar-month" aria-label={`Calendar for ${monthLabel}`}>
+  <h3>{monthLabel}</h3>
+  <table>
+    <caption class="sr-only">Events in {monthLabel}</caption>
+    <thead>
+      <tr>
+        {dayNames.map((dayName) => (
+          <th scope="col">{dayName}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {Array.from({ length: dayCells.length / 7 }, (_, rowIndex) => {
+        const row = dayCells.slice(rowIndex * 7, rowIndex * 7 + 7);
+        return (
+          <tr>
+            {row.map((day) => (
+              <td class={day === null ? "muted" : undefined}>
+                {day === null ? null : (
+                  <>
+                    <strong>{day}</strong>
+                    {eventsByDay.get(day)?.length ? (
+                      <ul class="calendar-day-events">
+                        {eventsByDay.get(day)?.map((event) => (
+                          <li><a href={`#event-${event.id}`}>{event.data.title}</a></li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </>
+                )}
+              </td>
+            ))}
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</section>

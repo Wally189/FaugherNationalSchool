@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { formatDate } from "../utils/date";
+
+interface Props {
+  post: CollectionEntry<"news">;
+}
+
+const { post } = Astro.props;
+---
+<article class="news-card">
+  {post.data.featuredImage ? (
+    <Image
+      src={post.data.featuredImage}
+      alt={post.data.featuredImageAlt ?? ""}
+      width={640}
+      height={360}
+      sizes="(max-width: 900px) 100vw, 46vw"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : null}
+  <div class="card-content">
+    <p class="eyebrow">{post.data.category}</p>
+    <h3><a href={`/school-news/${post.id}`}>{post.data.title}</a></h3>
+    <p class="meta">{formatDate(post.data.date)}</p>
+    <p>{post.data.excerpt}</p>
+  </div>
+</article>

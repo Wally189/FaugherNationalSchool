@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../site.config";
+---
+<BaseLayout title="Contact Us" description="Get in touch with Faugher National School.">
+  <section class="section">
+    <div class="container page-intro">
+      <h1>Contact Us</h1>
+      <p>We welcome queries from parents, guardians, and prospective families.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-two">
+      <article class="panel prose">
+        <h2>School Contact Details</h2>
+        <p><strong>Address:</strong> {siteConfig.contact.address}</p>
+        <p><strong>Phone:</strong> <a href={`tel:${siteConfig.contact.phoneHref}`}>{siteConfig.contact.phone}</a></p>
+        <p><strong>Email:</strong> <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a></p>
+        <p>
+          <a href="https://maps.google.com/?q=Faugher+National+School" rel="noreferrer">Open location in Google Maps</a>
+        </p>
+      </article>
+
+      <article class="panel">
+        <h2>Send a Message</h2>
+        <p id="form-success" class="notice" hidden>Thank you. Your message has been sent successfully.</p>
+        <form
+          class="form-grid"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/contact-us?success=true"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>
+              Do not fill this out: <input name="bot-field" />
+            </label>
+          </p>
+
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" required autocomplete="name" />
+
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" required autocomplete="email" />
+
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button class="button" type="submit">Send Message</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <script is:inline>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true') {
+      const success = document.getElementById('form-success');
+      if (success) {
+        success.hidden = false;
+      }
+    }
+  </script>
+</BaseLayout>

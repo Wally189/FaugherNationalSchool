@@ -1,0 +1,13 @@
+---
+import { siteConfig } from "../site.config";
+---
+<section class="quick-links" aria-label="Quick links">
+  <div class="container quick-links-inner">
+    <p>Quick Links</p>
+    <ul>
+      {siteConfig.quickLinks.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</section>

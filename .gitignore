@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.vscode/
+*.log
+*.crdownload
+.DS_Store
+Thumbs.db

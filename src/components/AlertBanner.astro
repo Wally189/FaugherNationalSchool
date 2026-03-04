@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  alert?: CollectionEntry<"settings">["data"];
+}
+
+const { alert } = Astro.props;
+---
+{alert?.enabled && alert.message ? (
+  <aside class="alert-banner" aria-live="polite">
+    <div class="container alert-inner">
+      <p>{alert.message}</p>
+      {alert.link ? (
+        <a href={alert.link}>{alert.linkLabel ?? "Read update"}</a>
+      ) : null}
+    </div>
+  </aside>
+) : null}

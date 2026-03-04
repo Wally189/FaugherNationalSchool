@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Parents Information" description="Key school information for parents and guardians.">
+  <section class="section">
+    <div class="container page-intro">
+      <h1>Parents Information</h1>
+      <p>
+        This page includes key day-to-day information for families. Please contact the school office if you need any
+        clarification.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container info-grid">
+      <article class="panel prose" id="opening-times">
+        <h2>Opening and Closing Times</h2>
+        <p>Our standard school day runs from 9:20am to 3:00pm unless otherwise advised.</p>
+        <p>Please ensure pupils arrive on time and are collected promptly at the end of the day.</p>
+      </article>
+
+      <article class="panel prose" id="absence-notes">
+        <h2>Absence Notes and Appointments</h2>
+        <p>
+          Please notify the school if your child is absent and send a written note on return. If your child has an
+          appointment, please inform the class teacher in advance where possible.
+        </p>
+      </article>
+
+      <article class="panel prose" id="uniform">
+        <h2>Uniform</h2>
+        <p>
+          Pupils are expected to wear the agreed school uniform. Please label all clothing clearly to avoid lost items.
+        </p>
+      </article>
+
+      <article class="panel prose" id="healthy-lunches">
+        <h2>Healthy Lunches</h2>
+        <p>
+          We encourage healthy lunches each day. Fizzy drinks and high-sugar treats are not permitted in school.
+          Please provide water and nutritious food options.
+        </p>
+      </article>
+
+      <article class="panel prose" id="medical-plan">
+        <h2>Medical Plan</h2>
+        <p>
+          Teachers do not administer medicines unless a formal agreed medical plan is in place. Please contact the
+          office to discuss any medical needs for your child.
+        </p>
+      </article>
+
+      <article class="panel prose" id="homework-guidelines">
+        <h2>Homework Guidelines</h2>
+        <p>
+          Homework is assigned according to class level and focuses on revision, reading, and reinforcing classroom
+          learning. Teachers will communicate expectations clearly for each year group.
+        </p>
+      </article>
+
+      <article class="panel prose" id="problem-solving-tips">
+        <h2>Problem-Solving Tips</h2>
+        <p>
+          Encourage your child to break tasks into smaller steps, explain their thinking aloud, and keep trying with
+          support. Praise effort and persistence.
+        </p>
+      </article>
+
+      <article class="panel prose" id="salf-folders">
+        <h2>SALF Folders</h2>
+        <p>
+          SALF folders support school-home communication and pupil progress. Please check the folder regularly and
+          return any signed notes or completed items as requested.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="enrolment">
+    <div class="container panel prose">
+      <h2>Enrolment</h2>
+      <p>
+        For enrolment details and required forms, contact the school office. We are happy to guide families through the
+        enrolment process.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="downloads">
+    <div class="container panel prose">
+      <h2>Downloads (PDFs)</h2>
+      <p>Upload policy and information files to the <code>public/downloads</code> folder to publish them here.</p>
+      <ul class="downloads-list">
+        <li><a href="/downloads/school-policies.pdf">School Policies (PDF)</a></li>
+        <li><a href="/downloads/school-calendar.pdf">School Calendar (PDF)</a></li>
+        <li><a href="/downloads/book-list.pdf">Book List (PDF)</a></li>
+        <li><a href="/downloads/enrolment-form.pdf">Enrolment Form (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

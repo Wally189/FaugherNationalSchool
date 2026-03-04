@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Faugher National School</title>
+  <desc id="desc">Open graph image for Faugher National School website</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#e1f3e8" />
+      <stop offset="1" stop-color="#d7e7f4" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect x="70" y="70" width="1060" height="490" rx="28" fill="#ffffff" opacity="0.95" />
+  <text x="130" y="270" font-family="Georgia, serif" font-size="72" fill="#18313a">Faugher National School</text>
+  <text x="130" y="350" font-family="Verdana, sans-serif" font-size="36" fill="#005f73">Welcoming every child to learn and thrive</text>
+</svg>

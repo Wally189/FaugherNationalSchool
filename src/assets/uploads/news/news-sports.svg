@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+  <title id="t">Sports placeholder</title>
+  <desc id="d">Illustrated placeholder for sports news</desc>
+  <rect width="1200" height="675" fill="#e8f3ea"/>
+  <circle cx="320" cy="320" r="180" fill="#2a9d8f" opacity="0.8"/>
+  <circle cx="800" cy="320" r="180" fill="#005f73" opacity="0.8"/>
+  <rect x="260" y="520" width="680" height="44" rx="8" fill="#18313a" opacity="0.5"/>
+</svg>

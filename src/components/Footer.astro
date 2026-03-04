@@ -1,0 +1,28 @@
+---
+import { siteConfig } from "../site.config";
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>{siteConfig.schoolName}</h2>
+      <p>{siteConfig.contact.address}</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p><a href={`tel:${siteConfig.contact.phoneHref}`}>{siteConfig.contact.phone}</a></p>
+      <p><a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a></p>
+    </section>
+
+    <section>
+      <h2>Useful</h2>
+      <p><a href="/parents-information#opening-times">Opening Times</a></p>
+      <p><a href="/parents-information#downloads">Downloads</a></p>
+    </section>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; {year} {siteConfig.schoolName}</p>
+  </div>
+</footer>

@@ -1,0 +1,64 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EventCard from "../../components/EventCard.astro";
+import CalendarMonth from "../../components/CalendarMonth.astro";
+import { addMonths, getEventsForMonth, getMonthStart, getPastEvents, getUpcomingEvents } from "../../utils/events";
+
+const allEvents = await getCollection("events", ({ data }) => !data.draft);
+const upcomingEvents = getUpcomingEvents(allEvents);
+const pastEvents = getPastEvents(allEvents);
+const monthStart = getMonthStart(new Date());
+const months = [0, 1, 2].map((offset) => addMonths(monthStart, offset));
+---
+<BaseLayout title="School Events" description="Upcoming school events and calendar view.">
+  <section class="section">
+    <div class="container page-intro">
+      <h1>School Events</h1>
+      <p>View upcoming school events in calendar and list format.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Calendar View</h2>
+      <div class="calendar-grid">
+        {months.map((monthDate) => (
+          <CalendarMonth monthDate={monthDate} events={getEventsForMonth(allEvents, monthDate)} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Upcoming Events</h2>
+      {upcomingEvents.length > 0 ? (
+        <div class="grid-two">
+          {upcomingEvents.map((event) => (
+            <EventCard event={event} />
+          ))}
+        </div>
+      ) : (
+        <p class="notice">There are no upcoming events at the moment. Please check back soon.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Past Events</h2>
+      {pastEvents.length > 0 ? (
+        <ul>
+          {pastEvents.map((event) => (
+            <li>
+              <strong>{event.data.title}</strong> ({event.data.start.toLocaleDateString("en-IE")})
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No past events listed yet.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

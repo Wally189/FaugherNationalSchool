@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsCard from "../../components/NewsCard.astro";
+
+const posts = (await getCollection("news", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const categories = Array.from(new Set(posts.map((post) => post.data.category))).sort();
+---
+<BaseLayout title="School News" description="Latest updates from Faugher National School.">
+  <section class="section">
+    <div class="container page-intro">
+      <h1>School News</h1>
+      <p>Read the latest updates from school life, Gaeilge, sports, achievements, and community activities.</p>
+      <p><strong>Categories:</strong> {categories.join(" | ")}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-two">
+      {posts.map((post) => (
+        <NewsCard post={post} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
