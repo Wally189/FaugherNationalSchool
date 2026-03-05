@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/links";
 ---
 <BaseLayout title="Classrooms" description="Junior Room, Senior Room, and school achievements.">
   <section class="section">
@@ -34,9 +35,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="container">
       <h2>Photo Gallery Placeholders</h2>
       <div class="gallery-placeholders">
-        <img src="/images/gallery-placeholder.svg" alt="Gallery placeholder for classroom photos" loading="lazy" />
-        <img src="/images/gallery-placeholder.svg" alt="Gallery placeholder for school event photos" loading="lazy" />
-        <img src="/images/gallery-placeholder.svg" alt="Gallery placeholder for achievement photos" loading="lazy" />
+        <img src={withBase("/images/gallery-placeholder.svg")} alt="Gallery placeholder for classroom photos" loading="lazy" />
+        <img src={withBase("/images/gallery-placeholder.svg")} alt="Gallery placeholder for school event photos" loading="lazy" />
+        <img src={withBase("/images/gallery-placeholder.svg")} alt="Gallery placeholder for achievement photos" loading="lazy" />
       </div>
     </div>
   </section>

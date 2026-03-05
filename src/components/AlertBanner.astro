@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { withBase } from "../utils/links";
 
 interface Props {
   alert?: CollectionEntry<"settings">["data"];
@@ -12,7 +13,7 @@ const { alert } = Astro.props;
     <div class="container alert-inner">
       <p>{alert.message}</p>
       {alert.link ? (
-        <a href={alert.link}>{alert.linkLabel ?? "Read update"}</a>
+        <a href={withBase(alert.link)}>{alert.linkLabel ?? "Read update"}</a>
       ) : null}
     </div>
   </aside>

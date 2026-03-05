@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { formatDateTime } from "../utils/date";
+import { withBase } from "../utils/links";
 
 interface Props {
   event: CollectionEntry<"events">;
@@ -16,7 +17,7 @@ const { event } = Astro.props;
     <p><strong>Location:</strong> {event.data.location}</p>
     <p>{event.data.description}</p>
     {event.data.attachment ? (
-      <p><a href={event.data.attachment}>{event.data.attachmentLabel ?? "Download attachment (PDF)"}</a></p>
+      <p><a href={withBase(event.data.attachment)}>{event.data.attachmentLabel ?? "Download attachment (PDF)"}</a></p>
     ) : null}
   </div>
 </article>

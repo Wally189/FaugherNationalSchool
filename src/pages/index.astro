@@ -6,6 +6,7 @@ import principalPhoto from "../assets/images/principal-dolores.jpg";
 import frontImage from "../assets/images/faugher-front.jpg";
 import { getUpcomingEvents } from "../utils/events";
 import { formatDate, formatDateTime } from "../utils/date";
+import { withBase } from "../utils/links";
 
 const news = (await getCollection("news", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -26,9 +27,9 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
           positive and caring school environment.
         </p>
         <div class="home-hero-actions">
-          <a class="button" href="/contact-us">Contact School</a>
-          <a class="button secondary" href="/parents-information">Parents Information</a>
-          <a class="button secondary" href="/school-news">Latest News</a>
+          <a class="button" href={withBase("/contact-us")}>Contact School</a>
+          <a class="button secondary" href={withBase("/parents-information")}>Parents Information</a>
+          <a class="button secondary" href={withBase("/school-news")}>Latest News</a>
         </div>
         <dl class="home-hero-meta">
           <div>
@@ -37,7 +38,7 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
           </div>
           <div>
             <dt>Phone</dt>
-            <dd><a href="/contact-us">View Contact Details</a></dd>
+            <dd><a href={withBase("/contact-us")}>View Contact Details</a></dd>
           </div>
           <div>
             <dt>Location</dt>
@@ -75,7 +76,7 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
           As you explore the site, you will find information on our ethos, achievements, and school updates. Please do
           not hesitate to contact us for any further information.
         </p>
-        <p><a href="/our-school">Read more about our school ethos and staff.</a></p>
+        <p><a href={withBase("/our-school")}>Read more about our school ethos and staff.</a></p>
       </article>
     </div>
   </section>
@@ -84,19 +85,19 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
     <div class="container">
       <h2>School Pathways</h2>
       <div class="pathways">
-        <a href="/parents-information" class="pathway-item">
+        <a href={withBase("/parents-information")} class="pathway-item">
           <h3>Parents Information</h3>
           <p>Opening times, absences, uniforms, lunches, homework guidance, and key downloads.</p>
         </a>
-        <a href="/school-events" class="pathway-item">
+        <a href={withBase("/school-events")} class="pathway-item">
           <h3>School Events</h3>
           <p>Calendar dates, meeting notices, school activities, and event attachments.</p>
         </a>
-        <a href="/school-news" class="pathway-item">
+        <a href={withBase("/school-news")} class="pathway-item">
           <h3>School News</h3>
           <p>Recent updates from school life, Gaeilge, sports, and whole-school achievements.</p>
         </a>
-        <a href="/our-school" class="pathway-item">
+        <a href={withBase("/our-school")} class="pathway-item">
           <h3>Our School</h3>
           <p>Learn about our values, school approach, and the people who support our pupils.</p>
         </a>
@@ -112,7 +113,7 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
           {latestNews.map((post) => (
             <li class="home-list-item">
               <p class="eyebrow">{post.data.category}</p>
-              <h3><a href={`/school-news/${post.id}`}>{post.data.title}</a></h3>
+              <h3><a href={withBase(`/school-news/${post.id}`)}>{post.data.title}</a></h3>
               <p class="meta">{formatDate(post.data.date)}</p>
               <p>{post.data.excerpt}</p>
             </li>
@@ -129,7 +130,7 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
         <ul class="home-list" aria-label="Upcoming events list">
           {upcomingEvents.map((event) => (
             <li class="home-list-item">
-              <h3><a href={`/school-events#event-${event.id}`}>{event.data.title}</a></h3>
+              <h3><a href={withBase(`/school-events#event-${event.id}`)}>{event.data.title}</a></h3>
               <p class="meta">{formatDateTime(event.data.start)} | {event.data.location}</p>
               <p>{event.data.description}</p>
             </li>

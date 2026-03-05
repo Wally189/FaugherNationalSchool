@@ -6,6 +6,7 @@ import AlertBanner from "../components/AlertBanner.astro";
 import "../styles/global.css";
 import { getEntry } from "astro:content";
 import { siteConfig } from "../site.config";
+import { withBase } from "../utils/links";
 
 interface Props {
   title: string;
@@ -17,6 +18,10 @@ const { title, description, ogImage } = Astro.props;
 const metaDescription = description ?? siteConfig.description;
 const canonical = new URL(Astro.url.pathname, siteConfig.siteUrl).toString();
 const alertEntry = await getEntry("settings", "alert");
+const rawOgImage = ogImage ?? siteConfig.socialImage;
+const resolvedOgImage = /^https?:\/\//.test(rawOgImage)
+  ? rawOgImage
+  : new URL(withBase(rawOgImage), siteConfig.siteUrl).toString();
 ---
 <!doctype html>
 <html lang="en">
@@ -32,12 +37,12 @@ const alertEntry = await getEntry("settings", "alert");
     <meta property="og:title" content={`${title} | ${siteConfig.schoolName}`} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage ?? siteConfig.socialImage} />
+    <meta property="og:image" content={resolvedOgImage} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | ${siteConfig.schoolName}`} />
     <meta name="twitter:description" content={metaDescription} />
-    <meta name="twitter:image" content={ogImage ?? siteConfig.socialImage} />
+    <meta name="twitter:image" content={resolvedOgImage} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>

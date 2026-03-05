@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/links";
 ---
 <BaseLayout title="Parents Information" description="Key school information for parents and guardians.">
   <section class="section">
@@ -92,10 +93,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2>Downloads (PDFs)</h2>
       <p>Upload policy and information files to the <code>public/downloads</code> folder to publish them here.</p>
       <ul class="downloads-list">
-        <li><a href="/downloads/school-policies.pdf">School Policies (PDF)</a></li>
-        <li><a href="/downloads/school-calendar.pdf">School Calendar (PDF)</a></li>
-        <li><a href="/downloads/book-list.pdf">Book List (PDF)</a></li>
-        <li><a href="/downloads/enrolment-form.pdf">Enrolment Form (PDF)</a></li>
+        <li><a href={withBase("/downloads/school-policies.pdf")}>School Policies (PDF)</a></li>
+        <li><a href={withBase("/downloads/school-calendar.pdf")}>School Calendar (PDF)</a></li>
+        <li><a href={withBase("/downloads/book-list.pdf")}>Book List (PDF)</a></li>
+        <li><a href={withBase("/downloads/enrolment-form.pdf")}>Enrolment Form (PDF)</a></li>
       </ul>
     </div>
   </section>

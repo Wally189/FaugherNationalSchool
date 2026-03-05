@@ -1,7 +1,8 @@
 ---
 import { siteConfig } from "../site.config";
+import { withBase, withoutBase } from "../utils/links";
 
-const pathname = Astro.url.pathname;
+const pathname = withoutBase(Astro.url.pathname);
 
 const isActive = (href: string): boolean => {
   if (href === "/") {
@@ -12,7 +13,7 @@ const isActive = (href: string): boolean => {
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/">
+    <a class="brand" href={withBase("/")}>
       <span class="brand-name">{siteConfig.shortName}</span>
       <span class="brand-tagline">{siteConfig.tagline}</span>
     </a>
@@ -25,7 +26,7 @@ const isActive = (href: string): boolean => {
       <ul>
         {siteConfig.nav.map((item) => (
           <li>
-            <a href={item.href} class={isActive(item.href) ? "active" : undefined}>
+            <a href={withBase(item.href)} class={isActive(item.href) ? "active" : undefined}>
               {item.label}
             </a>
           </li>

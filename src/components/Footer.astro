@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../site.config";
+import { withBase } from "../utils/links";
 
 const year = new Date().getFullYear();
 ---
@@ -18,8 +19,8 @@ const year = new Date().getFullYear();
 
     <section>
       <h2>Useful</h2>
-      <p><a href="/parents-information#opening-times">Opening Times</a></p>
-      <p><a href="/parents-information#downloads">Downloads</a></p>
+      <p><a href={withBase("/parents-information#opening-times")}>Opening Times</a></p>
+      <p><a href={withBase("/parents-information#downloads")}>Downloads</a></p>
     </section>
   </div>
   <div class="container footer-bottom">

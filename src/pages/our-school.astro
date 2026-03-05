@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/links";
 ---
 <BaseLayout title="Our School" description="Learn about our ethos, school values, and staff.">
   <section class="section">
@@ -51,7 +52,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <li>Special Needs Assistants</li>
         <li>Administrative and Support Staff</li>
       </ul>
-      <p><a href="/classrooms">View Junior Room, Senior Room, and Achievements.</a></p>
+      <p><a href={withBase("/classrooms")}>View Junior Room, Senior Room, and Achievements.</a></p>
     </div>
   </section>
 </BaseLayout>
