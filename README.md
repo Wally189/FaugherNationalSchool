@@ -74,6 +74,20 @@ Contact form:
 - The form on `/contact-us` uses Netlify Forms (`data-netlify="true"`).
 - Form submissions appear in Netlify dashboard under **Forms**.
 
+## GitHub Pages (shareable preview)
+
+This repository includes a GitHub Actions workflow that deploys to GitHub Pages on every push to `main`.
+
+Expected public URL:
+
+- `https://wally189.github.io/FaugherNationalSchool/`
+
+If needed, enable in GitHub:
+
+1. Open repository **Settings** -> **Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. Push to `main` (or re-run the workflow in **Actions** tab)
+
 ## Where to change school contact details
 
 Edit:

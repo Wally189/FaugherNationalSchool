@@ -1,7 +1,9 @@
+const publicSiteUrl = import.meta.env.PUBLIC_SITE_URL || "https://www.faughernationalschool.ie";
+
 export const siteConfig = {
   schoolName: "Faugher National School",
   shortName: "Faugher NS",
-  siteUrl: "https://www.faughernationalschool.ie",
+  siteUrl: publicSiteUrl,
   tagline: "A welcoming, happy school where every child can thrive.",
   description:
     "Faugher National School is a caring primary school community focused on helping pupils reach their fullest potential.",

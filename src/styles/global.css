@@ -1,13 +1,14 @@
 :root {
-  --color-bg: #f6f7f4;
-  --color-surface: #ffffff;
-  --color-ink: #1f2b2f;
-  --color-muted: #4b5f65;
-  --color-primary: #005f73;
-  --color-primary-soft: #d8eef2;
-  --color-accent: #ca6702;
-  --color-border: #d4dde0;
-  --shadow-soft: 0 10px 25px rgba(16, 39, 46, 0.08);
+  --color-bg: #edf2ec;
+  --color-surface: #fbfcfa;
+  --color-ink: #172f36;
+  --color-muted: #3c575e;
+  --color-primary: #0f4c5c;
+  --color-primary-soft: #d4e1dc;
+  --color-accent: #6f8440;
+  --color-border: #c6d2cb;
+  --color-deep: #0d2f37;
+  --shadow-soft: 0 14px 30px rgba(16, 43, 50, 0.11);
   --radius: 0.8rem;
   --container: min(72rem, 92vw);
 }
@@ -24,11 +25,12 @@ body {
 
 body {
   background:
-    radial-gradient(circle at top left, #e4f1e8 0%, transparent 40%),
-    radial-gradient(circle at top right, #e5edf5 0%, transparent 32%),
+    radial-gradient(circle at 12% 0%, #d9e8dc 0%, transparent 42%),
+    radial-gradient(circle at 90% 0%, #d6e4e9 0%, transparent 32%),
+    linear-gradient(180deg, #eef4ef 0%, #e9efea 100%),
     var(--color-bg);
   color: var(--color-ink);
-  font: 1rem/1.6 "Source Sans Pro", "Segoe UI", Tahoma, sans-serif;
+  font: 1rem/1.62 "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
 a {
@@ -51,9 +53,9 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Merriweather", "Cambria", Georgia, serif;
+  font-family: "Goudy Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
   line-height: 1.2;
-  color: #18313a;
+  color: var(--color-deep);
 }
 
 h1 {
@@ -117,7 +119,7 @@ h2 {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(248, 251, 248, 0.95);
   border-bottom: 1px solid var(--color-border);
   backdrop-filter: blur(8px);
 }
@@ -136,7 +138,7 @@ h2 {
 
 .brand-name {
   display: block;
-  font-family: "Merriweather", Georgia, serif;
+  font-family: "Goudy Old Style", Georgia, serif;
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -174,7 +176,7 @@ h2 {
 }
 
 .quick-links {
-  background: #f2f7f8;
+  background: var(--color-deep);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -188,6 +190,7 @@ h2 {
 .quick-links-inner p {
   margin: 0;
   font-weight: 700;
+  color: #eaf4ef;
 }
 
 .quick-links ul {
@@ -202,6 +205,17 @@ h2 {
 .quick-links a {
   text-decoration: none;
   font-weight: 600;
+  color: #ecf5f2;
+  display: inline-block;
+  border: 1px solid rgba(217, 233, 225, 0.35);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+
+.quick-links a:hover {
+  color: #fff;
+  border-color: rgba(217, 233, 225, 0.7);
+  background: rgba(255, 255, 255, 0.11);
 }
 
 .section {
@@ -236,9 +250,9 @@ h2 {
 }
 
 .button.secondary {
-  background: #fff;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-deep);
+  border: 1px solid #8ca39a;
 }
 
 .panel {
@@ -247,6 +261,142 @@ h2 {
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
   padding: 1.2rem;
+}
+
+.home-hero-wrap {
+  padding-top: 1.2rem;
+}
+
+.home-hero {
+  display: grid;
+  gap: 1.25rem;
+  align-items: stretch;
+  grid-template-columns: 1.05fr 1.35fr;
+}
+
+.home-hero-content {
+  background: linear-gradient(180deg, #f6faf8 0%, #edf4ef 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: clamp(1.2rem, 2vw, 2.1rem);
+  box-shadow: var(--shadow-soft);
+}
+
+.home-hero-content h1 {
+  margin-top: 0.5rem;
+}
+
+.home-hero-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.home-hero-meta {
+  margin: 1.1rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid #c6d4ce;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.home-hero-meta dt {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.home-hero-meta dd {
+  margin: 0.2rem 0 0;
+  font-weight: 700;
+}
+
+.home-hero-image {
+  margin: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #aebeb7;
+  box-shadow: 0 16px 32px rgba(13, 47, 55, 0.2);
+}
+
+.home-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.principal-intro {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.principal-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.6rem;
+}
+
+.principal-copy {
+  border-top: 5px solid var(--color-primary);
+}
+
+.pathways {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.pathway-item {
+  display: block;
+  background: #f7fbf8;
+  border: 1px solid #c8d5cf;
+  border-left: 6px solid var(--color-accent);
+  border-radius: 0.8rem;
+  color: inherit;
+  text-decoration: none;
+  padding: 1rem 1rem 1rem 1.1rem;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.pathway-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+  border-color: #91a79d;
+}
+
+.pathway-item h3 {
+  margin: 0 0 0.3rem;
+}
+
+.home-lists {
+  max-width: 56rem;
+}
+
+.home-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.home-list-item {
+  background: #f8fbf9;
+  border: 1px solid #cad7d1;
+  border-radius: 0.8rem;
+  padding: 1rem 1.1rem;
+}
+
+.home-list-item h3 {
+  margin: 0.2rem 0 0.25rem;
+}
+
+.home-list-item p:last-child {
+  margin-bottom: 0;
 }
 
 .cards {
@@ -274,9 +424,10 @@ h2 {
 .event-card {
   overflow: hidden;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 1px solid #c8d4cf;
+  border-top: 5px solid #7f9560;
   border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 8px 18px rgba(17, 51, 45, 0.08);
 }
 
 .news-card img {
@@ -434,7 +585,7 @@ h2 {
 .site-footer {
   margin-top: 3rem;
   border-top: 1px solid var(--color-border);
-  background: #eaf1f2;
+  background: #dfe8e2;
   padding-top: 1.2rem;
 }
 
@@ -457,6 +608,10 @@ h2 {
 }
 
 @media (max-width: 900px) {
+  .home-hero,
+  .principal-intro,
+  .pathways,
+  .home-hero-meta,
   .hero,
   .grid-two,
   .cards,

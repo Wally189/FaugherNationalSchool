@@ -2,10 +2,10 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import NewsCard from "../components/NewsCard.astro";
-import EventCard from "../components/EventCard.astro";
 import principalPhoto from "../assets/images/principal-dolores.jpg";
+import frontImage from "../assets/images/faugher-front.jpg";
 import { getUpcomingEvents } from "../utils/events";
+import { formatDate, formatDateTime } from "../utils/date";
 
 const news = (await getCollection("news", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -16,67 +16,89 @@ const events = await getCollection("events", ({ data }) => !data.draft);
 const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
 ---
 <BaseLayout title="Home" description="Welcome to Faugher National School.">
-  <section class="section">
-    <div class="container hero">
-      <div class="hero-text">
-        <h1>Welcome to Faugher National School</h1>
+  <section class="section home-hero-wrap">
+    <div class="container home-hero">
+      <div class="home-hero-content">
+        <p class="eyebrow">Faugher, County Donegal</p>
+        <h1>A calm, welcoming school community where children can thrive</h1>
         <p>
-          Faugher National School is a welcoming, fun, and happy learning environment where every child is encouraged
-          to reach their fullest potential.
+          At Faugher National School, we support each pupil to grow in confidence, curiosity, and kindness through a
+          positive and caring school environment.
         </p>
-        <div class="hero-actions">
-          <a class="button" href="/contact-us">Contact Us</a>
+        <div class="home-hero-actions">
+          <a class="button" href="/contact-us">Contact School</a>
           <a class="button secondary" href="/parents-information">Parents Information</a>
           <a class="button secondary" href="/school-news">Latest News</a>
         </div>
+        <dl class="home-hero-meta">
+          <div>
+            <dt>School Day</dt>
+            <dd>9:20am to 3:00pm</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href="/contact-us">View Contact Details</a></dd>
+          </div>
+          <div>
+            <dt>Location</dt>
+            <dd>Faugher, Co. Donegal</dd>
+          </div>
+        </dl>
       </div>
 
-      <aside class="panel">
+      <figure class="home-hero-image">
         <Image
-          src={principalPhoto}
-          alt="Principal portrait"
-          width={640}
-          height={360}
-          loading="lazy"
-          decoding="async"
+          src={frontImage}
+          alt="Faugher National School building and front grounds"
+          width={1400}
+          height={900}
+          sizes="(max-width: 900px) 100vw, 58vw"
+          loading="eager"
+          fetchpriority="high"
         />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container principal-intro">
+      <aside class="panel principal-card">
+        <Image src={principalPhoto} alt="Principal portrait" width={640} height={360} loading="lazy" decoding="async" />
+      </aside>
+      <article class="panel principal-copy">
         <h2>Principal Welcome</h2>
         <p>
-          It is a pleasure to welcome you to our school website. It offers a glimpse into the caring and positive school
-          life for which Faugher National School is known.
+          It gives me great pleasure to welcome you to our website. It reflects the warm, fun, and happy environment
+          that Faugher National School is known for, where we help each pupil reach their fullest potential.
         </p>
-        <p><a href="/our-school">Read the full welcome and learn more about our ethos.</a></p>
-      </aside>
+        <p>
+          As you explore the site, you will find information on our ethos, achievements, and school updates. Please do
+          not hesitate to contact us for any further information.
+        </p>
+        <p><a href="/our-school">Read more about our school ethos and staff.</a></p>
+      </article>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2>Explore</h2>
-      <div class="cards">
-        <a class="card-link" href="/parents-information">
-          <article class="panel">
-            <h3>Parents Information</h3>
-            <p>Daily routines, healthy lunches, uniforms, homework, and key policies.</p>
-          </article>
+      <h2>School Pathways</h2>
+      <div class="pathways">
+        <a href="/parents-information" class="pathway-item">
+          <h3>Parents Information</h3>
+          <p>Opening times, absences, uniforms, lunches, homework guidance, and key downloads.</p>
         </a>
-        <a class="card-link" href="/school-news">
-          <article class="panel">
-            <h3>School News</h3>
-            <p>Recent updates from school life, Gaeilge, sports, and achievements.</p>
-          </article>
+        <a href="/school-events" class="pathway-item">
+          <h3>School Events</h3>
+          <p>Calendar dates, meeting notices, school activities, and event attachments.</p>
         </a>
-        <a class="card-link" href="/school-events">
-          <article class="panel">
-            <h3>School Events</h3>
-            <p>Upcoming activities, parent meetings, celebrations, and school calendar entries.</p>
-          </article>
+        <a href="/school-news" class="pathway-item">
+          <h3>School News</h3>
+          <p>Recent updates from school life, Gaeilge, sports, and whole-school achievements.</p>
         </a>
-        <a class="card-link" href="/our-school">
-          <article class="panel">
-            <h3>Our School</h3>
-            <p>Our ethos, principal welcome, and an overview of our staff and school community.</p>
-          </article>
+        <a href="/our-school" class="pathway-item">
+          <h3>Our School</h3>
+          <p>Learn about our values, school approach, and the people who support our pupils.</p>
         </a>
       </div>
     </div>
@@ -85,10 +107,17 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
   <section class="section">
     <div class="container">
       <h2>Latest News</h2>
-      <div class="grid-two">
-        {latestNews.map((post) => (
-          <NewsCard post={post} />
-        ))}
+      <div class="home-lists">
+        <ul class="home-list" aria-label="Latest news list">
+          {latestNews.map((post) => (
+            <li class="home-list-item">
+              <p class="eyebrow">{post.data.category}</p>
+              <h3><a href={`/school-news/${post.id}`}>{post.data.title}</a></h3>
+              <p class="meta">{formatDate(post.data.date)}</p>
+              <p>{post.data.excerpt}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
@@ -97,14 +126,34 @@ const upcomingEvents = getUpcomingEvents(events).slice(0, 3);
     <div class="container">
       <h2>Upcoming Events</h2>
       {upcomingEvents.length > 0 ? (
-        <div class="grid-two">
+        <ul class="home-list" aria-label="Upcoming events list">
           {upcomingEvents.map((event) => (
-            <EventCard event={event} />
+            <li class="home-list-item">
+              <h3><a href={`/school-events#event-${event.id}`}>{event.data.title}</a></h3>
+              <p class="meta">{formatDateTime(event.data.start)} | {event.data.location}</p>
+              <p>{event.data.description}</p>
+            </li>
           ))}
-        </div>
+        </ul>
       ) : (
         <p class="notice">There are no upcoming events right now. Please check back soon.</p>
       )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Highlights</h2>
+      <div class="grid-two">
+        <article class="panel">
+          <h3>Community and Wellbeing</h3>
+          <p>We value belonging, respect, and positive home-school communication across every class level.</p>
+        </article>
+        <article class="panel">
+          <h3>Learning and Growth</h3>
+          <p>Our teaching approach supports each child to make steady progress in a safe and encouraging setting.</p>
+        </article>
+      </div>
     </div>
   </section>
 </BaseLayout>
