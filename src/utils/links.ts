@@ -1,4 +1,5 @@
-const baseUrl = import.meta.env.BASE_URL;
+const rawBaseUrl = import.meta.env.BASE_URL;
+const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl : `${rawBaseUrl}/`;
 
 export function withBase(path: string): string {
   if (!path) {
@@ -14,14 +15,15 @@ export function withBase(path: string): string {
 }
 
 export function withoutBase(pathname: string): string {
-  if (baseUrl === "/") {
+  if (rawBaseUrl === "/") {
     return pathname;
   }
 
-  if (!pathname.startsWith(baseUrl)) {
+  if (!pathname.startsWith(baseUrl) && !pathname.startsWith(rawBaseUrl)) {
     return pathname;
   }
 
-  const stripped = pathname.slice(baseUrl.length);
+  const prefix = pathname.startsWith(baseUrl) ? baseUrl : rawBaseUrl;
+  const stripped = pathname.slice(prefix.length);
   return stripped ? `/${stripped}` : "/";
 }
